@@ -64,9 +64,12 @@
                     var image = $("<img>");
                     image.attr("src", response.data[i].images.fixed_width_small.url);
                     $("#gif").append(image)
-
-
                 }
+                var rateDiv = $("<div>");
+                var rating = response.rating;
+                var ratingElm = $("<h1>");
+                ratingElm.attr("id", "info");
+                $("#info").append(Rating);
             });
         })
 
@@ -76,29 +79,30 @@
             event.preventDefault();
             var movie = $("#searchInput").val().trim();
             topics.push(movie);
+            $(buttons).empty()
             displayButtons()
         })
 
 
-        function displayMovieInfo() {
-            var movie = $(this).attr("name");
-            var queryURL = "https://api.giphy.com/v1/gifs/search?api_key=b7Ptri8WCMTGKeZ346qTMqDZEMbrTAA6&q=" +
-                movie + "&limit=10&offset=0&rating=G&lang=en"
+        // function displayMovieInfo() {
+        //     var movie = $(this).attr("name");
+        //     var queryURL = "https://api.giphy.com/v1/gifs/search?api_key=b7Ptri8WCMTGKeZ346qTMqDZEMbrTAA6&q=" +
+        //         movie + "&limit=10&offset=0&rating=G&lang=en"
 
 
-            $.ajax({
-                url: queryURL,
-                method: "GET"
-            }).then(function (response) {
+        //     $.ajax({
+        //         url: queryURL,
+        //         method: "GET"
+        //     }).then(function (response) {
 
-                var rateDiv = $("<div>");
-                var rating = response.rating;
-                var ratingElm = $("<h1>");
-                ratingElm.attr("id", "info");
-                $("#info").append(Rating);
-            });
-        }
-        displayMovieInfo()
+        //         var rateDiv = $("<div>");
+        //         var rating = response.rating;
+        //         var ratingElm = $("<h1>");
+        //         ratingElm.attr("id", "info");
+        //         $("#info").append(Rating);
+        //     });
+        // }
+        // displayMovieInfo()
     </script>
 
 </body>
