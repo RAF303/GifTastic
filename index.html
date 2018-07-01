@@ -64,12 +64,14 @@
                     var image = $("<img>");
                     image.attr("src", response.data[i].images.fixed_width_small.url);
                     $("#gif").append(image)
+
+                    var rateDiv = $("<div>");
+                    var rating = (response.data[i].rating);
+                    var ratingElm = $("<h1>");
+                    ratingElm.attr("id", "info");
+                    ratingElm.text(rating);
+                    $("#info").append(ratingElm);
                 }
-                var rateDiv = $("<div>");
-                var rating = response.rating;
-                var ratingElm = $("<h1>");
-                ratingElm.attr("id", "info");
-                $("#info").append(Rating);
             });
         })
 
