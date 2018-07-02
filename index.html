@@ -62,15 +62,20 @@
                 for (var i = 0; i < response.data.length; i++) {
                     console.log("this is our single", response.data[i].images.fixed_width_small.url);
                     var image = $("<img>");
+                    image.attr("id", "pause")
                     image.attr("src", response.data[i].images.fixed_width_small.url);
                     $("#gif").append(image)
+                    image.attr("dataStill")
+                    image.attr("data-animate")
+                    image.attr("data-state", "still")
+
 
                     var rateDiv = $("<div>");
                     var rating = (response.data[i].rating);
                     var ratingElm = $("<h1>");
                     ratingElm.attr("id", "info");
                     ratingElm.text(rating);
-                    $("#info").append(ratingElm);
+                    $("#gif").append(ratingElm);
                 }
             });
         })
@@ -85,26 +90,12 @@
             displayButtons()
         })
 
-
-        // function displayMovieInfo() {
-        //     var movie = $(this).attr("name");
-        //     var queryURL = "https://api.giphy.com/v1/gifs/search?api_key=b7Ptri8WCMTGKeZ346qTMqDZEMbrTAA6&q=" +
-        //         movie + "&limit=10&offset=0&rating=G&lang=en"
-
-
-        //     $.ajax({
-        //         url: queryURL,
-        //         method: "GET"
-        //     }).then(function (response) {
-
-        //         var rateDiv = $("<div>");
-        //         var rating = response.rating;
-        //         var ratingElm = $("<h1>");
-        //         ratingElm.attr("id", "info");
-        //         $("#info").append(Rating);
-        //     });
-        // }
-        // displayMovieInfo()
+        $("#pause").on("click", function () {
+            if ($(src.split("_")).last()[0] == "still.gif")
+                $().attr('src', src.replace('_still.gif', '.gif'));
+            else
+                $(image).attr('src', src.replace('.gif', '_still.gif'));
+        })
     </script>
 
 </body>
